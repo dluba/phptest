@@ -21,7 +21,7 @@
     
                 ];
 
-                header('Location: ../profil.php');
+                header('Location: ../profile.php');
             }
         else {
                 echo "Wrong password";
