@@ -1,15 +1,11 @@
 <?php
         session_start();
+        require_once 'connect.php';
 
-        if(!isset($_POST['login'])||!isset($_POST['password'])){
-            echo "Login and password required";
-            die();
-        }
-        
         $file = "users.json";
         $users = json_decode(file_get_contents($file), true);
         $login = $_POST['login'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']);
         
 
         foreach ($users as $getdata){
