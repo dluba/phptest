@@ -6,8 +6,8 @@
         $name = $_POST['name'];
         $login  = $_POST['login']; 
         $email = $_POST['email'];
-        $password = md5($_POST['password']);
-        $password_confirm = md5($_POST['password_confirm']);
+        $password = $_POST['password'];
+        $password_confirm = $_POST['password_confirm'];
 
         password_hash($password, PASSWORD_DEFAULT);
         if ($password == $password_confirm)
