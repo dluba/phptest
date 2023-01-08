@@ -6,10 +6,10 @@
         $name = $_POST['name'];
         $login  = $_POST['login']; 
         $email = $_POST['email'];
-        $password = $_POST['password'];
-        $password_confirm = $_POST['password_confirm'];
+        $password = md5($_POST['password']);
+        $password_confirm = md5($_POST['password_confirm']);
 
-        
+        password_hash($password, PASSWORD_DEFAULT);
         if ($password == $password_confirm)
         {
         $json = json_decode(file_get_contents('users.json'), true);
@@ -17,15 +17,14 @@
             'name'     => $_POST['name'],
             'login'     => $_POST['login'], 
             'email'    => $_POST['email'],
-            'password'     => $_POST['password'],
-            'password_confirm'     => $_POST['password_confirm']
+            'password'     => md5($_POST['password']),
+            'password_confirm'     => md5($_POST['password_confirm'])
     
         ];
 
         file_put_contents('users.json', json_encode($json));
         //con..
-        $_SESSION['message'] = ':)';
-        header('Location: ../register.php');
+        header('Location: ../profile.php');
         }
         else
         {
